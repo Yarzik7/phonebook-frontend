@@ -1,22 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Loader } from 'components/Loader/Loader';
+import Navigation from 'components/Navigation/Navigation';
 
 const Header = () => {
   return (
     <>
       <header>
         <div>
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/contacts">Contacts</NavLink>
-              </li>
-            </ul>
-          </nav>
+          <Navigation />
         </div>
       </header>
       <Suspense fallback={<Loader />}>
