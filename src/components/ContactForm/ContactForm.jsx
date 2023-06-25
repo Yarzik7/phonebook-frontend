@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
-import { addContact } from 'Redux/operations';
-import { selectContacts } from 'Redux/selectors';
+import { addContact } from 'Redux/contacts/operations';
+import { selectContacts } from 'Redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { showNotifyReport } from 'js/notifyFunc';
 
@@ -24,9 +24,9 @@ const ContactForm = () => {
         contactName.toLowerCase() === name.toLowerCase()
     )
       ? showNotifyReport(`${name} is already in contact`, 'reportWarning')
-      : dispatch(addContact({ id: nanoid(), name, phone: number }));
+      : dispatch(addContact({ id: nanoid(), name, number }));
 
-      reset();
+    reset();
   };
 
   const handleChange = ({ target: { name, value } }) => {

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FaTrash } from 'react-icons/fa';
 import css from './ContactItem.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'Redux/operations';
+import { deleteContact } from 'Redux/contacts/operations';
 
 const ContactItem = ({ name, number, contactId }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const ContactItem = ({ name, number, contactId }) => {
         className={css.button}
         onClick={() => dispatch(deleteContact(contactId))}
       >
-       <FaTrash />
+        <FaTrash />
       </button>
     </li>
   );

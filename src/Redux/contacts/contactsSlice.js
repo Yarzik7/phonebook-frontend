@@ -4,12 +4,12 @@ import { fetchContacts, addContact, deleteContact } from './operations';
 const handlePending = state => {
   state.error = null;
   state.isLoading = true;
-}
+};
 
 const handleRejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
-}
+};
 
 export const contactsSlice = createSlice({
   name: 'contacts',
@@ -40,7 +40,7 @@ export const contactsSlice = createSlice({
     [deleteContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
-      const index = state.items.findIndex(({id}) => id === payload.id);
+      const index = state.items.findIndex(({ id }) => id === payload.id);
       state.items.splice(index, 1);
     },
   },

@@ -1,6 +1,9 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import  SharedLayout from 'components/SharedLayout/SharedLayout'
+import { useDispatch } from 'react-redux';
+//import { selectIsRefreshing } from 'Redux/auth/selectors';
+import { refreshUser } from 'Redux/auth/operations';
 // import HomePage from 'pages/HomePage';
 // import ContactsPage from 'pages/ContactsPage';
 // import RegisterPage from 'pages/RegisterPage';
@@ -13,6 +16,13 @@ const LoginPage = lazy(() => import('pages/LoginPage'));
 
 
 const App = () => {
+  const dispatch = useDispatch();
+  //const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
