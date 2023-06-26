@@ -1,16 +1,12 @@
 .navigation__list {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
 .link {
   display: inline-block;
   text-decoration: none;
-  padding: 12px;
+  padding: 12px 0;
   font-weight: 700;
-  color: #f69c02;
-}
-
-.link.active {
-  color: #e84a5f;
 }

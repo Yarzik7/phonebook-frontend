@@ -1,8 +1,12 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-const notifyFailure = (message, timeout) =>
+const notifyFailure = (message, timeout) => {
+  Notify.init({
+    className: 'error',
+  });
   Notify.failure(message, { timeout: timeout });
+};
 
 const notifySuccsess = (message, timeout) =>
   Notify.success(message, { timeout: timeout });

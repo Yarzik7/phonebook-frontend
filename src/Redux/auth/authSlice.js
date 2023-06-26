@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
 import { persistReducer } from 'redux-persist';
+import {
+  handleLogInRejected,
+  handleLogOutRejected,
+  handleRegisterRejected,
+} from 'js/helpers';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -8,6 +13,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const authPersistConfig = {
@@ -25,20 +31,26 @@ const authSlice = createSlice({
       state.token = payload.token;
       state.isLoggedIn = true;
     },
+    [register.rejected]: handleRegisterRejected,
+
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
+    [logIn.rejected]: handleLogInRejected,
+
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+    [logOut.rejected]: handleLogOutRejected,
+
     [refreshUser.pending](state) {
       state.isRefreshing = true;
     },
-    [refreshUser.fulfilled](state, {payload}) {
+    [refreshUser.fulfilled](state, { payload }) {
       state.user = payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;

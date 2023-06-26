@@ -56,3 +56,31 @@ main {
 #root {
   height: 100vh;
 }
+
+a {
+  color: #939393;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover,
+a:focus {
+  color: #f69c02;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #f69c02;
+  transform: scale(1.1);
+}
+
+.loader {
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.error {
+  top: 75px;
+  right: 10px;
+}

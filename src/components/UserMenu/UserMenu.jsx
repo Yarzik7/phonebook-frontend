@@ -5,7 +5,7 @@ import css from './UserMenu.module.css';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const { email } = useSelector(selectUser);
+  const { name, email } = useSelector(selectUser);
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -13,7 +13,10 @@ const UserMenu = () => {
 
   return (
     <div className={css['user-menu']}>
-      <p className={css['user-email']}>{email}</p>
+      <div>
+        <p className={css['user-name']}>Welcome, {name}!</p>
+        <p className={css['user-email']}>{email}</p>
+      </div>
       <button className={css.button} onClick={handleLogOut}>
         Logout
       </button>

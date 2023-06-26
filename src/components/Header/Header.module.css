@@ -1,6 +1,9 @@
 .header {
     max-width: 100%;
     height: 70px;
+
+    color: #f69c02;
+
     background-color: #000;
     border-bottom: 1px solid #f69c02;
 }

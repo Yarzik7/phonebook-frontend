@@ -1,12 +1,18 @@
 .user-menu {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+}
+
+.user-name {
+  font-weight: 700;
+  margin-bottom: 3px;
 }
 
 .user-email {
-  font-weight: 700;
-  color: #f69c02;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
 }
 
 .button {
