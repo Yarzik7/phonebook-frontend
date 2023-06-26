@@ -1,10 +1,12 @@
 import RegisterForm from 'components/RegisterForm/RegisterForm';
+import css from 'components/App/App.module.css'
 
 const RegisterPage = () => {
   return (
-    <main>
-      <RegisterForm/>
-    </main>
+    <>
+      <h1 className={css.appTitle}>Register</h1>
+      <RegisterForm />
+    </>
   );
 };
 

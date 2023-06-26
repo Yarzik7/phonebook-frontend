@@ -1,0 +1,11 @@
+.header {
+    max-width: 100%;
+    height: 70px;
+    background-color: #000;
+    border-bottom: 1px solid #f69c02;
+}
+
+.header__container {
+  padding: 0 20px;
+  height: 100%;
+}

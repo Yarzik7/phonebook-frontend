@@ -3,19 +3,24 @@ import AuthNavigation from 'components/AuthNavigation/AuthNavigation';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'Redux/auth/selectors';
+import css from './Navigation.module.css'
 
 
 const Navigation = () => {
 const isLoggedIn = useSelector(selectIsLoggedIn)
   return (
-    <nav>
-      <ul>
+    <nav className={css.navigation}>
+      <ul className={css.navigation__list}>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink className={css.link} to="/">
+            Home
+          </NavLink>
         </li>
         {isLoggedIn && (
           <li>
-            <NavLink to="/contacts">Contacts</NavLink>
+            <NavLink className={css.link} to="/contacts">
+              Contacts
+            </NavLink>
           </li>
         )}
       </ul>

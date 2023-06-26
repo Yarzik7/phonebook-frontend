@@ -3,14 +3,18 @@ import css from './AuthNavigation.module.css';
 
 const AuthNavigation = () => {
   return (
-    <div>
-      <NavLink className={css.link} to="/register">
-        Register
-      </NavLink>
-      <NavLink className={css.link} to="/login">
-        Log In
-      </NavLink>
-    </div>
+    <ul className={css.navigation__list}>
+      <li>
+        <NavLink className={css.link} to="/register">
+          Register
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className={css.link} to="/login">
+          Log In
+        </NavLink>
+      </li>
+    </ul>
   );
 };
 
