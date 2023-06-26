@@ -23,7 +23,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+    <form className={css.form} onSubmit={handleSubmit}>
       <label htmlFor={emailInputId.current} className={css.label}>
         Email
       </label>

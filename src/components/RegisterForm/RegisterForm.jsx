@@ -25,7 +25,7 @@ const handleSubmit = e => {
 };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+    <form className={css.form} onSubmit={handleSubmit}>
       <label htmlFor={nameInputId.current} className={css.label}>
         Username
       </label>
