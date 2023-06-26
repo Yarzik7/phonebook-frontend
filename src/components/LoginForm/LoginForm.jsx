@@ -32,6 +32,7 @@ const LoginForm = () => {
         className={css.input}
         type="email"
         name="email"
+        required
       />
 
       <label htmlFor={passwordInputId.current} className={css.label}>
@@ -42,6 +43,8 @@ const LoginForm = () => {
         className={css.input}
         type="password"
         name="password"
+        minLength="8"
+        required
       />
 
       <button className={css.button} type="submit">
