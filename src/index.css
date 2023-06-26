@@ -80,7 +80,8 @@ a:focus {
   margin-top: 20px;
 }
 
-.error {
+.error,
+.info {
   top: 75px;
   right: 10px;
 }

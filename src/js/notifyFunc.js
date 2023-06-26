@@ -11,8 +11,13 @@ const notifyFailure = (message, timeout) => {
 const notifySuccsess = (message, timeout) =>
   Notify.success(message, { timeout: timeout });
 
-const notifyInfo = (message, timeout) =>
+const notifyInfo = (message, timeout) => {
+   Notify.init({
+     className: 'info',
+   });
   Notify.info(message, { timeout: timeout });
+}
+  
 
 const reportSuccsess = (
   message,

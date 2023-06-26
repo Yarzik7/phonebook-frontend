@@ -5,6 +5,7 @@ import {
   handleLogInRejected,
   handleLogOutRejected,
   handleRegisterRejected,
+  handleRefreshUserRejected,
 } from 'js/helpers';
 import storage from 'redux-persist/lib/storage';
 
@@ -12,8 +13,6 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
-  error: null,
 };
 
 const authPersistConfig = {
@@ -47,17 +46,11 @@ const authSlice = createSlice({
     },
     [logOut.rejected]: handleLogOutRejected,
 
-    [refreshUser.pending](state) {
-      state.isRefreshing = true;
-    },
     [refreshUser.fulfilled](state, { payload }) {
       state.user = payload;
       state.isLoggedIn = true;
-      state.isRefreshing = false;
     },
-    [refreshUser.rejected](state) {
-      state.isRefreshing = false;
-    },
+    [refreshUser.rejected]: handleRefreshUserRejected,
   },
 });
 

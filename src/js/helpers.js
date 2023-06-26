@@ -51,4 +51,27 @@ const handleLogOutRejected = (_, { payload }) => {
   }
 };
 
-export { handleLogInRejected, handleLogOutRejected, handleRegisterRejected };
+const handleRefreshUserRejected = (_, { payload }) => {
+  if (payload === 'Please log in or register!') {
+    showNotify(payload, 'info', 7000);
+    return;
+  }
+
+  switch (payload.status) {
+    case 401:
+      showNotify('Missing header with authorization token!', 'failure', 7000);
+      return;
+    case 500:
+      showNotify('Server error!', 'failure', 7000);
+      return;
+    default:
+      return;
+  }
+};
+
+export {
+  handleLogInRejected,
+  handleLogOutRejected,
+  handleRegisterRejected,
+  handleRefreshUserRejected,
+};
