@@ -11,7 +11,7 @@ const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 
-const App = () => {
+export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,5 +39,3 @@ const App = () => {
     </Routes>
   );
 };
-
-export { App };

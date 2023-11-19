@@ -8,6 +8,7 @@ import { store, persistor } from 'Redux/store';
 
 import 'modern-normalize/modern-normalize.css';
 import './index.css';
+import './styles/variables.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

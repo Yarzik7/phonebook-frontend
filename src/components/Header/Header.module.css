@@ -1,11 +1,10 @@
 .header {
-    max-width: 100%;
-    height: 70px;
+  max-width: 100%;
+  height: 70px;
 
-    color: #f69c02;
+  color: var(--accent-color);
 
-    background-color: #000;
-    border-bottom: 1px solid #f69c02;
+  border-bottom: 1px solid var(--accent-color);
 }
 
 .header__container {
