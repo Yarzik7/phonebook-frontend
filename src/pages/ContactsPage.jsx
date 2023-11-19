@@ -6,23 +6,14 @@ import css from 'components/App/App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'Redux/contacts/selectors';
 import { fetchContacts } from 'Redux/contacts/operations';
-import { useNavigate } from 'react-router-dom';
-import { selectIsLoggedIn } from 'Redux/auth/selectors';
 
 const ContactsPage = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const navigate = useNavigate();
-
   const dispatch = useDispatch();
   const { items, isLoading, error } = useSelector(selectContacts);
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login', { replace: true });
-      return;
-    }
     dispatch(fetchContacts());
-  }, [dispatch, isLoggedIn, navigate]);
+  }, [dispatch]);
 
   return (
     <>
