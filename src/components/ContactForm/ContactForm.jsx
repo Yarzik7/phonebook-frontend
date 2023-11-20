@@ -1,17 +1,15 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import css from './ContactForm.module.css';
 import { addContact } from 'Redux/contacts/operations';
 import { selectContacts } from 'Redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { showNotifyReport } from 'js/notifyFunc';
+import Input from 'components/Input/Input';
+import Form from 'components/Form/Form';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
-  const nameInputId = useRef(nanoid());
-  const numberInputId = useRef(nanoid());
 
   const { items } = useSelector(selectContacts);
   const dispatch = useDispatch();
@@ -19,10 +17,7 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    items.some(
-      ({ name: contactName }) =>
-        contactName.toLowerCase() === name.toLowerCase()
-    )
+    items.some(({ name: contactName }) => contactName.toLowerCase() === name.toLowerCase())
       ? showNotifyReport(`${name} is already in contact`, 'reportWarning')
       : dispatch(addContact({ id: nanoid(), name, number }));
 
@@ -48,41 +43,27 @@ const ContactForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label htmlFor={nameInputId.current} className={css.label}>
-        Name
-      </label>
-      <input
+    <Form buttonCaption="Add contact" onSubmit={handleSubmit}>
+      <Input
+        label="Name"
         type="text"
         name="name"
-        id={nameInputId.current}
         pattern="^[A-Za-z\u0080-\uFFFF\- ']+$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-        className={css.input}
         onChange={handleChange}
         value={name}
       />
 
-      <label htmlFor={numberInputId.current} className={css.label}>
-        Number
-      </label>
-      <input
+      <Input
+        label="Number"
         type="tel"
         name="number"
-        id={numberInputId.current}
         pattern="^(\+?[0-9.\(\)\-\s]*)$"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-        className={css.input}
         onChange={handleChange}
         value={number}
       />
-
-      <button type="submit" className={css.button}>
-        Add contact
-      </button>
-    </form>
+    </Form>
   );
 };
 

@@ -21,19 +21,19 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />}></Route>
+        <Route index element={<HomePage />} />
         <Route
           path="/register"
           element={<RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} />}
-        ></Route>
+        />
         <Route
           path="/login"
           element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />}
-        ></Route>
+        />
         <Route
           path="/contacts"
           element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />}
-        ></Route>
+        />
         <Route path="*" element={<HomePage />}></Route>
       </Route>
     </Routes>
