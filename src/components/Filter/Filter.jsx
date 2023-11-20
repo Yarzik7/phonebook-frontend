@@ -1,32 +1,23 @@
-import { useRef } from 'react';
 import css from './Filter.module.css';
-import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from 'Redux/filter/filterSlice';
 import { selectFilter } from 'Redux/filter/selectors';
+import Input from 'components/Input/Input';
 
 const Filter = () => {
-  const filterInputId = useRef(nanoid());
-
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const handleChangeFilter = ({ target: { value } }) =>
-    dispatch(changeFilter(value));
+  const handleChangeFilter = ({ target: { value } }) => dispatch(changeFilter(value));
 
   return (
     <div className={css.filterBox}>
-      <label htmlFor={filterInputId.current} className={css.label}>
-        Find contacts by name
-      </label>
-      <input
+      <Input
+        label="Find contacts by name"
         type="text"
         name="filter"
-        id={filterInputId.current}
         pattern="^[A-Za-z\u0080-\uFFFF\- ']+$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-        className={css.input}
         onChange={handleChangeFilter}
         value={filter}
       />

@@ -14,7 +14,6 @@ const Input = ({
   value,
 }) => {
   const inputId = useRef(nanoid());
-
   return (
     <>
       {label && (

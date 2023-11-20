@@ -5,14 +5,3 @@
   padding: 20px;
   min-width: 320px;
 }
-
-.label {
-  margin-bottom: 15px;
-}
-
-.input {
-  height: 30px;
-  padding-left: 15px;
-
-  border-radius: 10px;
-}
