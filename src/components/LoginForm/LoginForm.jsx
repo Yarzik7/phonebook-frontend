@@ -19,7 +19,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form buttonCaption="Login" onSubmit={handleSubmit}>
       <Input label="Email" type="email" name="email" />
 
       <Input label="Password" type="password" name="password" minLength="8" />
