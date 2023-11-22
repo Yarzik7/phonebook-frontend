@@ -2,14 +2,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
-  background-color: var(--bg-button-color);
+  color: var(--accent-color);
+
+  background-color: transparent;
   border: none;
   border-radius: 50%;
 
-  transition: background-color var(--transition-duration) var(--transition-timing-function);
+  transition: background-color var(--transition-duration) var(--transition-timing-function),
+    transform var(--transition-duration) var(--transition-timing-function);
   cursor: pointer;
-  fill: var(--accent-color);
+}
+
+.burgerMenuButton:hover,
+.burgerMenuButton:focus {
+  transform: scale(1.1);
 }
