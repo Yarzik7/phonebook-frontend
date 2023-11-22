@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaPen } from 'react-icons/fa';
 import css from './ContactItem.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'Redux/contacts/operations';
 
 const ContactItem = ({ name, number, contactId }) => {
   const dispatch = useDispatch();
+
+  const handleDeleteContact = () => dispatch(deleteContact(contactId));
 
   return (
     <li className={css.contactItem}>
@@ -14,13 +16,14 @@ const ContactItem = ({ name, number, contactId }) => {
         <p className={css.caption}>Number: {number}</p>
       </div>
 
-      <button
-        type="button"
-        className={css.button}
-        onClick={() => dispatch(deleteContact(contactId))}
-      >
-        <FaTrash />
-      </button>
+      <div className={css.buttonContainer}>
+        <button type="button" className={css.button} onClick={() => {}}>
+          <FaPen />
+        </button>
+        <button type="button" className={css.button} onClick={handleDeleteContact}>
+          <FaTrash />
+        </button>
+      </div>
     </li>
   );
 };

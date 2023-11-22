@@ -1,0 +1,12 @@
+.navigation__list {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 0;
+  font-weight: 700;
+}

@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import AuthNavigation from 'components/AuthNavigation/AuthNavigation';
+import ContentNavigation from 'components/ContentNavigation/ContentNavigation';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { useAuth } from 'hooks/useAuth';
 import css from './Navigation.module.css';
@@ -9,21 +9,7 @@ const Navigation = () => {
 
   return (
     <nav className={css.navigation}>
-      <ul className={css.navigation__list}>
-        <li>
-          <NavLink className={css.link} to="/">
-            Home
-          </NavLink>
-        </li>
-        {isLoggedIn && (
-          <li>
-            <NavLink className={css.link} to="/contacts">
-              Contacts
-            </NavLink>
-          </li>
-        )}
-      </ul>
-
+      <ContentNavigation isLoggedIn={isLoggedIn} />
       {isLoggedIn ? <UserMenu /> : <AuthNavigation />}
     </nav>
   );

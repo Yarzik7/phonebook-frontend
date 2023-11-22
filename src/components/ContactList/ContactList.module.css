@@ -1,5 +1,7 @@
 .contactList {
+  max-height: 30vh;
   margin: 0;
   padding: 20px;
   list-style: none;
+  overflow-y: scroll;
 }

@@ -1,20 +1,12 @@
-import { NavLink } from 'react-router-dom';
-import css from './AuthNavigation.module.css';
+import NavList from 'components/NavList/NavList';
+import NavListItem from 'components/NavList/NavListItem/NavListItem';
 
 const AuthNavigation = () => {
   return (
-    <ul className={css.navigation__list}>
-      <li>
-        <NavLink className={css.link} to="/register">
-          Register
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className={css.link} to="/login">
-          Login
-        </NavLink>
-      </li>
-    </ul>
+    <NavList>
+      <NavListItem caption="Register" to="/register" />
+      <NavListItem caption="Login" to="/login" />
+    </NavList>
   );
 };
 

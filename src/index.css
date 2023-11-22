@@ -50,11 +50,6 @@ a {
   text-decoration: none;
 }
 
-main {
-  /* max-height: (100vh - 91px); */
-  height: 100%;
-}
-
 #root {
   height: 100%;
 }
