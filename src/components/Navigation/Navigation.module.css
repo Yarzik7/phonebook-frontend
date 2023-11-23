@@ -1,7 +1,9 @@
 .navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   height: 100%;
+
+  @media screen and (min-width: 640px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

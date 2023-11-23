@@ -4,7 +4,7 @@ import { FiMenu } from 'react-icons/fi';
 const BurgerMenu = ({ onClick }) => {
   return (
     <button type="button" className={css.burgerMenuButton} onClick={onClick}>
-      <FiMenu size={40} />
+      <FiMenu size={35} />
     </button>
   );
 };

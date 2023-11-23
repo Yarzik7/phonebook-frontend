@@ -24,22 +24,14 @@
 
 .buttonContainer {
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
 .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 30px;
   height: 30px;
-
-  background-color: var(--bg-button-color);
-  border: none;
   border-radius: 50%;
-
-  transition: background-color var(--transition-duration) var(--transition-timing-function);
-  cursor: pointer;
 }
 
 .button:hover {

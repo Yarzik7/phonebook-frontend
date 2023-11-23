@@ -1,11 +1,14 @@
 :root {
+  /* colors */
   --accent-color: #f79e03;
   --primary-dark-color: #000;
   --bg-button-color: #949494;
   --backdrop: rgba(148, 148, 148, 0.5);
 
+  /* sizes */
   --border-radius: 10px;
 
+  /* other */
   --transition-duration: 300ms;
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

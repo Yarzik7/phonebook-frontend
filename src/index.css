@@ -1,9 +1,5 @@
 @import-normalize;
 
-html {
-  height: 100vh;
-}
-
 body {
   margin: 0;
   height: 100vh;
@@ -45,16 +41,29 @@ img {
   height: auto;
 }
 
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--bg-button-color);
+  border: none;
+
+  transition: background-color var(--transition-duration) var(--transition-timing-function);
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--accent-color);
+}
+
 a {
   list-style: none;
   text-decoration: none;
-}
 
-#root {
-  height: 100%;
-}
-
-a {
   color: var(--bg-button-color);
 
   transition: color var(--transition-duration) var(--transition-timing-function),

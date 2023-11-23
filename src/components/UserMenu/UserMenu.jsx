@@ -12,10 +12,10 @@ const UserMenu = () => {
   };
 
   return (
-    <div className={css['user-menu']}>
+    <div className={css.userMenu}>
       <div>
-        <p className={css['user-name']}>Welcome, {name}!</p>
-        <p className={css['user-email']}>{email}</p>
+        <p className={css.userName}>{name}</p>
+        <p className={css.userEmail}>{email}</p>
       </div>
       <button className={css.button} onClick={handleLogOut}>
         Logout

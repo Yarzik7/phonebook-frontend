@@ -1,22 +1,8 @@
 .burgerMenuButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 
   color: var(--accent-color);
 
   background-color: transparent;
-  border: none;
-  border-radius: 50%;
-
-  transition: background-color var(--transition-duration) var(--transition-timing-function),
-    transform var(--transition-duration) var(--transition-timing-function);
-  cursor: pointer;
-}
-
-.burgerMenuButton:hover,
-.burgerMenuButton:focus {
-  transform: scale(1.1);
 }
