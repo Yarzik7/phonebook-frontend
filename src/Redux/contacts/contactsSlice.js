@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
+// import * as contactsReducers from '../../js/reduxActionHandlers/contactsActionHandlers';
 
 const handlePending = state => {
   state.error = null;
