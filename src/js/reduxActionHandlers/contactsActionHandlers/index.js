@@ -1,27 +1,14 @@
-import {
-  handleAddContactFulfilled,
-  handleAddContactRejected,
-  handleAddContactPending,
-} from './addContactsActionHandlers';
-import {
-  handleDeleteContactFulfilled,
-  handleDeleteContactPending,
-  handleDeleteContactRejected,
-} from './deleteContactsActionHandlers';
-import {
-  handleFetchContactsFulfilled,
-  handleFetchContactsPending,
-  handleFetchContactsRejected,
-} from './fetchContactsActionHandlers';
+import { handleAddContactFulfilled } from './addContactsActionHandlers';
+import { handleDeleteContactFulfilled } from './deleteContactsActionHandlers';
+import { handleFetchContactsFulfilled } from './fetchContactsActionHandlers';
+
+import { handleContactsPending } from './handleContactsPending';
+import { handleContactsRejected } from './handleContactsRejected';
 
 export {
   handleAddContactFulfilled,
-  handleAddContactPending,
-  handleAddContactRejected,
   handleDeleteContactFulfilled,
-  handleDeleteContactPending,
-  handleDeleteContactRejected,
   handleFetchContactsFulfilled,
-  handleFetchContactsPending,
-  handleFetchContactsRejected,
+  handleContactsPending,
+  handleContactsRejected,
 };
