@@ -6,3 +6,8 @@
 
   background-color: transparent;
 }
+
+.burgerMenuButton:hover,
+.burgerMenuButton:focus {
+  background-color: transparent;
+}
