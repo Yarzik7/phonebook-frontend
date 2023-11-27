@@ -14,17 +14,17 @@ const clearAuthHeader = () => {
 
 const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   return await handleErrorAsyncOperation(async () => {
-    const res = await axios.post('/users/signup', credentials);
-    setAuthHeader(res.data.token);
-    return res.data;
+    const { data } = await axios.post('/users/signup', credentials);
+    setAuthHeader(data.token);
+    return data;
   }, thunkAPI);
 });
 
 const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   return await handleErrorAsyncOperation(async () => {
-    const res = await axios.post('/users/login', credentials);
-    setAuthHeader(res.data.token);
-    return res.data;
+    const { data } = await axios.post('/users/login', credentials);
+    setAuthHeader(data.token);
+    return data;
   }, thunkAPI);
 });
 
@@ -45,8 +45,8 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 
   return await handleErrorAsyncOperation(async () => {
     setAuthHeader(persistedToken);
-    const res = await axios.get('/users/current');
-    return res.data;
+    const { data } = await axios.get('/users/current');
+    return data;
   }, thunkAPI);
 });
 
