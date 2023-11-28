@@ -1,0 +1,22 @@
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+
+  color: var(--accent-color);
+
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+
+  transition: border-color var(--transition-duration) var(--transition-timing-function);
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  background-color: transparent;
+  border-color: var(--accent-color);
+}

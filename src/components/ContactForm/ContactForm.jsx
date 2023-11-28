@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { addContact } from 'Redux/contacts/operations';
+import { addContact, updateContact } from 'Redux/contacts/operations';
 import { selectContacts } from 'Redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { showNotifyReport } from 'js/notifyFunc';
@@ -17,9 +17,14 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    items.some(({ name: contactName }) => contactName.toLowerCase() === name.toLowerCase())
-      ? showNotifyReport(`${name} is already in contact`, 'reportWarning')
-      : dispatch(addContact({ id: nanoid(), name, number }));
+    if (items.some(({ name: contactName }) => contactName.toLowerCase() === name.toLowerCase())) {
+      showNotifyReport(`${name} is already in contact`, 'reportWarning');
+      return;
+    }
+
+    const contactData = { name, number };
+
+    dispatch(addContact({ id: nanoid(), ...contactData }));
 
     reset();
   };
@@ -43,7 +48,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Form buttonCaption="Add contact" onSubmit={handleSubmit}>
+    <Form buttonCaption={`Add contact`} onSubmit={handleSubmit}>
       <Input
         label="Name"
         type="text"

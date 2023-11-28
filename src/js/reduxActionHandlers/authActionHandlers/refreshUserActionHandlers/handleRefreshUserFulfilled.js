@@ -1,5 +1,4 @@
-export const handleRefreshUserFulfilled = state => {
-  state.user = { name: null, email: null };
-  state.token = null;
-  state.isLoggedIn = false;
+export const handleRefreshUserFulfilled = (state, { payload }) => {
+  state.user = payload;
+  state.isLoggedIn = true;
 };

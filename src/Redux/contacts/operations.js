@@ -9,12 +9,22 @@ const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, thunkAPI) 
   }, thunkAPI);
 });
 
-const addContact = createAsyncThunk('contacts/addContacts', async (data, thunkAPI) => {
+const addContact = createAsyncThunk('contacts/addContacts', async (newContact, thunkAPI) => {
   return await handleErrorAsyncOperation(async () => {
-    const { data } = await axios.post('/contacts', data);
+    const { data } = await axios.post('/contacts', newContact);
     return data;
   }, thunkAPI);
 });
+
+const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async ({ contactId, updData }, thunkAPI) => {
+    return await handleErrorAsyncOperation(async () => {
+      const { data } = await axios.patch(`/contacts${contactId}`, updData);
+      return data;
+    }, thunkAPI);
+  }
+);
 
 const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactId, thunkAPI) => {
   return await handleErrorAsyncOperation(async () => {
@@ -23,4 +33,4 @@ const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactI
   }, thunkAPI);
 });
 
-export { fetchContacts, addContact, deleteContact };
+export { fetchContacts, addContact, deleteContact, updateContact };
