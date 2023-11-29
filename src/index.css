@@ -143,11 +143,3 @@ main {
   align-items: center;
   margin-top: 20px;
 }
-
-.error,
-.info,
-.success,
-.warning {
-  right: 50vw;
-  transform: translateX(50%);
-}

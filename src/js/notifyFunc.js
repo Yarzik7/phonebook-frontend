@@ -4,6 +4,7 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 const notifyFailure = (message, timeout) => {
   Notify.init({
     className: 'error',
+    position: 'center-top',
   });
   Notify.failure(message, { timeout: timeout });
 };
@@ -11,6 +12,7 @@ const notifyFailure = (message, timeout) => {
 const notifySuccsess = (message, timeout) => {
   Notify.init({
     className: 'success',
+    position: 'center-top',
   });
   Notify.success(message, { timeout: timeout });
 };
@@ -18,6 +20,7 @@ const notifySuccsess = (message, timeout) => {
 const notifyInfo = (message, timeout) => {
   Notify.init({
     className: 'info',
+    position: 'center-top',
   });
   Notify.info(message, { timeout: timeout });
 };
@@ -25,6 +28,7 @@ const notifyInfo = (message, timeout) => {
 const notifyWarning = (message, timeout) => {
   Notify.init({
     className: 'warning',
+    position: 'center-top',
   });
   Notify.warning(message, { timeout: timeout });
 };
