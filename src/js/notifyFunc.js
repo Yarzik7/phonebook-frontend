@@ -8,22 +8,28 @@ const notifyFailure = (message, timeout) => {
   Notify.failure(message, { timeout: timeout });
 };
 
-const notifySuccsess = (message, timeout) =>
+const notifySuccsess = (message, timeout) => {
+  Notify.init({
+    className: 'success',
+  });
   Notify.success(message, { timeout: timeout });
+};
 
 const notifyInfo = (message, timeout) => {
-   Notify.init({
-     className: 'info',
-   });
+  Notify.init({
+    className: 'info',
+  });
   Notify.info(message, { timeout: timeout });
-}
-  
+};
 
-const reportSuccsess = (
-  message,
-  title = 'Succsess!',
-  buttonCaption = 'Okay'
-) => {
+const notifyWarning = (message, timeout) => {
+  Notify.init({
+    className: 'warning',
+  });
+  Notify.warning(message, { timeout: timeout });
+};
+
+const reportSuccsess = (message, title = 'Succsess!', buttonCaption = 'Okay') => {
   Report.success(title, message, buttonCaption);
 };
 
@@ -59,6 +65,9 @@ const showNotify = (message = 'Message!', type = 'info', timeout = 3000) => {
     case 'info':
       notifyInfo(message, timeout);
       break;
+    case 'warning':
+      notifyWarning(message, timeout);
+      break;
     default:
       throw new Error('This type of message is not supported!');
   }
@@ -70,11 +79,7 @@ const showNotify = (message = 'Message!', type = 'info', timeout = 3000) => {
  * @param {string} title
  * @param {string} buttonCaption
  */
-const showNotifyReport = (
-  message = 'Message',
-  type = 'reportInfo',
-  buttonCaption = 'Okay'
-) => {
+const showNotifyReport = (message = 'Message', type = 'reportInfo', buttonCaption = 'Okay') => {
   switch (type) {
     case 'reportSuccsess':
       reportSuccsess(message, buttonCaption);

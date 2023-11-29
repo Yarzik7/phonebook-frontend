@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { addContact, updateContact } from 'Redux/contacts/operations';
 import { selectContacts } from 'Redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { showNotifyReport, showNotify } from 'js/notifyFunc';
+import { showNotify } from 'js/notifyFunc';
 import Input from 'components/Input/Input';
 import Form from 'components/Form/Form';
 
@@ -37,11 +37,16 @@ const ContactForm = ({ currentContact, onCloseModal }) => {
           contactName.toLowerCase() !== currentContact?.name.toLowerCase()
       )
     ) {
-      showNotifyReport(`${name} is already in contact`, 'reportWarning');
+      showNotify(`${name} is already in contact`, 'warning');
       return;
     }
 
     const contactData = handleCreateContactData();
+
+    if (!Object.keys(contactData).length) {
+      showNotify('Update at least one field!', 'failure');
+      return;
+    }
 
     const operationResult = await dispatch(
       currentContact

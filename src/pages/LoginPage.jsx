@@ -1,13 +1,7 @@
-import LoginForm from 'components/LoginForm/LoginForm';
-import css from 'components/App/App.module.css';
+import AuthPagesContent from 'components/AuthPagesContent/AuthPagesContent';
 
 const LoginPage = () => {
-  return (
-    <>
-      <h1 className={css.appTitle}>Login</h1>
-      <LoginForm />
-    </>
-  );
+  return <AuthPagesContent page='Login'/>;
 };
 
 export default LoginPage;

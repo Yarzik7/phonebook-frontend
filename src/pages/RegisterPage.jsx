@@ -1,13 +1,7 @@
-import RegisterForm from 'components/RegisterForm/RegisterForm';
-import css from 'components/App/App.module.css';
+import AuthPagesContent from 'components/AuthPagesContent/AuthPagesContent';
 
 const RegisterPage = () => {
-  return (
-    <>
-      <h1 className={css.appTitle}>Register</h1>
-      <RegisterForm />
-    </>
-  );
+  return <AuthPagesContent page="Register" />;
 };
 
 export default RegisterPage;
