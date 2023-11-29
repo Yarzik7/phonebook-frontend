@@ -1,6 +1,6 @@
 .header {
   max-width: 100%;
-  height: 70px;
+  height: var(--header-height);
 
   color: var(--accent-color);
 
@@ -12,5 +12,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1600px;
   height: 100%;
 }

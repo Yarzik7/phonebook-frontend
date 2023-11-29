@@ -3,30 +3,59 @@ import { nanoid } from 'nanoid';
 import { addContact, updateContact } from 'Redux/contacts/operations';
 import { selectContacts } from 'Redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { showNotifyReport } from 'js/notifyFunc';
+import { showNotifyReport, showNotify } from 'js/notifyFunc';
 import Input from 'components/Input/Input';
 import Form from 'components/Form/Form';
 
-const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+const ContactForm = ({ currentContact, onCloseModal }) => {
+  const [name, setName] = useState(currentContact?.name ?? '');
+  const [number, setNumber] = useState(currentContact?.number ?? '');
 
   const { items } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
+  const handleCreateContactData = () => {
+    const contactData = {};
+    const contactDataPairs = Object.entries({ name, number });
+
+    for (const pair of contactDataPairs) {
+      if (currentContact?.[pair[0]] !== pair[1]) {
+        contactData[pair[0]] = pair[1];
+      }
+    }
+
+    return contactData;
+  };
+
+  const handleSubmit = async event => {
     event.preventDefault();
 
-    if (items.some(({ name: contactName }) => contactName.toLowerCase() === name.toLowerCase())) {
+    if (
+      items.some(
+        ({ name: contactName }) =>
+          contactName.toLowerCase() === name.toLowerCase() &&
+          contactName.toLowerCase() !== currentContact?.name.toLowerCase()
+      )
+    ) {
       showNotifyReport(`${name} is already in contact`, 'reportWarning');
       return;
     }
 
-    const contactData = { name, number };
+    const contactData = handleCreateContactData();
 
-    dispatch(addContact({ id: nanoid(), ...contactData }));
+    const operationResult = await dispatch(
+      currentContact
+        ? updateContact({ contactId: currentContact.contactId, updData: contactData })
+        : addContact({ id: nanoid(), ...contactData })
+    );
+
+    if (operationResult.error) {
+      showNotify(operationResult.payload.message, 'failure', 5000);
+      return;
+    }
 
     reset();
+    onCloseModal();
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -48,7 +77,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Form buttonCaption={`Add contact`} onSubmit={handleSubmit}>
+    <Form buttonCaption={`${currentContact ? 'Update' : 'Add'} contact`} onSubmit={handleSubmit}>
       <Input
         label="Name"
         type="text"

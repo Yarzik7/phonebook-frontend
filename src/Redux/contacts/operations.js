@@ -20,7 +20,7 @@ const updateContact = createAsyncThunk(
   'contacts/updateContact',
   async ({ contactId, updData }, thunkAPI) => {
     return await handleErrorAsyncOperation(async () => {
-      const { data } = await axios.patch(`/contacts${contactId}`, updData);
+      const { data } = await axios.patch(`/contacts/${contactId}`, updData);
       return data;
     }, thunkAPI);
   }

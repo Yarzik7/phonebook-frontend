@@ -1,12 +1,16 @@
 :root {
   /* colors */
-  --accent-color: #f79e03;
+  --accent-color: #f79e02;
+  --accent-color-opacity: rgb(247, 158, 2, 1);
   --primary-dark-color: #000;
   --bg-button-color: #949494;
+  --bg-button-color-opacity: rgb(148, 148, 148, 0.4);
   --backdrop: rgba(148, 148, 148, 0.5);
 
   /* sizes */
   --border-radius: 10px;
+  --header-height: 70px;
+  --footer-height: 70px;
 
   /* other */
   --transition-duration: 300ms;

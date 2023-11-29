@@ -33,7 +33,7 @@ const ContactItem = ({ name, number, contactId }) => {
       {showModal && (
         <Modal onClose={toggleModal}>
           <ModalContent onClose={toggleModal}>
-            <ContactForm />
+            <ContactForm onCloseModal={toggleModal} currentContact={{ name, number, contactId }} />
           </ModalContent>
         </Modal>
       )}

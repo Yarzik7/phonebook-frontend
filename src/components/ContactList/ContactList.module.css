@@ -1,7 +1,27 @@
 .contactList {
-  max-height: 60vh;
-  margin: 0;
-  padding: 20px;
-  list-style: none;
+  height: 60vh;
+  /* height: 60%; */
+  /* height: 100%; */
+  /* max-height: calc(100% - 600px); */
+  /* max-height: auto; */
+  padding-right: 15px;
   overflow-y: scroll;
+}
+
+.contactList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.contactList::-webkit-scrollbar-track {
+  border-radius: var(--border-radius);
+  background-color: var(--bg-button-color-opacity);
+}
+
+.contactList::-webkit-scrollbar-thumb {
+  border-radius: var(--border-radius);
+  background-color: var(--bg-button-color);
+}
+
+.contactList::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color);
 }
