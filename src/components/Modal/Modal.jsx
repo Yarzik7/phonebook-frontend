@@ -1,10 +1,10 @@
 import css from './Modal.module.css';
 import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+import { useEffect, forwardRef } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, onClose }) => {
+const Modal = forwardRef(({ children, onClose }, ref) => {
   useEffect(() => {
     const handleCloseByEsc = event => {
       if (event.code === 'Escape') {
@@ -24,11 +24,11 @@ const Modal = ({ children, onClose }) => {
   };
 
   return createPortal(
-    <div className={css.backdrop} onClick={handleBackdropClick}>
+    <div ref={ref} className={['modalOpen', css.backdrop].join(' ')} onClick={handleBackdropClick}>
       {children}
     </div>,
     modalRoot
   );
-};
+});
 
 export default Modal;
