@@ -2,17 +2,15 @@ import PropTypes from 'prop-types';
 import { FaTrash, FaPen } from 'react-icons/fa';
 import css from './ContactItem.module.css';
 import { useDispatch } from 'react-redux';
+import { useShowModal } from 'hooks';
 import { deleteContact } from 'Redux/contacts/operations';
 import Modal from 'components/Modal/Modal';
-import ModalContent from 'components/Modal/ModalContent/ModalContent';
 import ContactForm from 'components/ContactForm';
-import { useState } from 'react';
 
 const ContactItem = ({ name, number, contactId }) => {
-  const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
+  const { showModal, toggleModal, backdropRef, contentRef } = useShowModal();
 
-  const toggleModal = () => setShowModal(showModal => !showModal);
+  const dispatch = useDispatch();
   const handleDeleteContact = () => dispatch(deleteContact(contactId));
 
   return (
@@ -31,10 +29,8 @@ const ContactItem = ({ name, number, contactId }) => {
         </button>
       </div>
       {showModal && (
-        <Modal onClose={toggleModal}>
-          <ModalContent onClose={toggleModal}>
-            <ContactForm onCloseModal={toggleModal} currentContact={{ name, number, contactId }} />
-          </ModalContent>
+        <Modal onClose={toggleModal} backdropRef={backdropRef} contentRef={contentRef}>
+          <ContactForm onCloseModal={toggleModal} currentContact={{ name, number, contactId }} />
         </Modal>
       )}
     </li>

@@ -1,7 +1,7 @@
 import Navigation from 'components/Navigation/Navigation';
 import css from 'components/Header/Header.module.css';
-import { useState, useEffect, useRef } from 'react';
-import { useAuth } from 'hooks/useAuth';
+import { useEffect } from 'react';
+import { useAuth, useShowModal } from 'hooks';
 import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 import UserMenu from 'components/UserMenu';
@@ -11,20 +11,11 @@ import SideBar from 'components/SideBar/SideBar';
 const Header = () => {
   const { isLoggedIn } = useAuth();
   const isMediumScreen = useMediaQuery({ query: '(min-width: 640px)' });
-  const backdropRef = useRef(null);
-  const sidebarRef = useRef(null);
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(showModal => !showModal);
+  const { showModal, toggleModal, setShowModal, backdropRef, contentRef } = useShowModal();
 
   useEffect(() => {
     isMediumScreen && setShowModal(false);
-  }, [isMediumScreen]);
-
-  const handleModalClose = () => {
-    backdropRef.current?.classList.add('modalClose');
-    sidebarRef.current?.classList.add('modalContentClose');
-    setTimeout(toggleModal, 250);
-  };
+  }, [isMediumScreen, setShowModal]);
 
   return (
     <header className={css.header}>
@@ -32,8 +23,13 @@ const Header = () => {
         {isMediumScreen ? <Navigation /> : <BurgerMenu onClick={toggleModal} />}
         {isMediumScreen && isLoggedIn && <UserMenu />}
         {showModal && (
-          <Modal ref={backdropRef} onClose={handleModalClose}>
-            <SideBar ref={sidebarRef} isLoggedIn={isLoggedIn} isMediumScreen={isMediumScreen} />
+          <Modal backdropRef={backdropRef} onClose={toggleModal} withoutDefaultContent>
+            <SideBar
+              ref={contentRef}
+              onClose={toggleModal}
+              isLoggedIn={isLoggedIn}
+              isMediumScreen={isMediumScreen}
+            />
           </Modal>
         )}
       </div>

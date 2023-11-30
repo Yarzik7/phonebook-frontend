@@ -1,13 +1,11 @@
 import css from './AddButton.module.css';
 import { MdAddIcCall } from 'react-icons/md';
-import { useState } from 'react';
+import { useShowModal } from 'hooks';
 import Modal from 'components/Modal/Modal';
-import ModalContent from 'components/Modal/ModalContent/ModalContent';
 import ContactForm from 'components/ContactForm';
 
 const AddButton = () => {
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(showModal => !showModal);
+  const { showModal, toggleModal, backdropRef, contentRef } = useShowModal();
 
   return (
     <>
@@ -16,10 +14,8 @@ const AddButton = () => {
       </button>
 
       {showModal && (
-        <Modal onClose={toggleModal}>
-          <ModalContent onClose={toggleModal}>
-            <ContactForm onCloseModal={toggleModal} />
-          </ModalContent>
+        <Modal onClose={toggleModal} backdropRef={backdropRef} contentRef={contentRef}>
+          <ContactForm onCloseModal={toggleModal} />
         </Modal>
       )}
     </>

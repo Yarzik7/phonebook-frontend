@@ -1,16 +1,14 @@
-import { useRef } from 'react';
+import { forwardRef } from 'react';
 import css from './ModalContent.module.css';
 import CloseButton from 'components/CloseButton/CloseButton';
 
-const ModalContent = ({ onClose, children }) => {
-  const modalContentRef = useRef(null);
-
+const ModalContent = forwardRef(({ onClose, children }, ref) => {
   return (
-    <div ref={modalContentRef} className={css.modalContent}>
+    <div ref={ref} className={['modalContentOpen', css.modalContent].join(' ')}>
       <CloseButton onClick={onClose} />
       {children}
     </div>
   );
-};
+});
 
 export default ModalContent;
