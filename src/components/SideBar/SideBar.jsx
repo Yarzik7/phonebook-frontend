@@ -6,11 +6,11 @@ import { forwardRef } from 'react';
 
 const SideBar = forwardRef(({ isLoggedIn, onClose }, ref) => {
   return (
-    <div ref={ref} className={['modalContentOpen', css.sidebar].join(' ')}>
+    <aside ref={ref} className={['modalContentOpen', css.sidebar].join(' ')}>
       <CloseButton onClick={onClose} />
       <div className={css.userBar}>{isLoggedIn && <UserMenu />}</div>
       <Navigation />
-    </div>
+    </aside>
   );
 });
 

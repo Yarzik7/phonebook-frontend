@@ -6,15 +6,17 @@ const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ onClose, backdropRef, contentRef, withoutDefaultContent = false, children }) => {
   return createPortal(
-    <ModalBackdrop ref={backdropRef} onClose={onClose}>
-      {withoutDefaultContent ? (
-        <>{children}</>
-      ) : (
-        <ModalContent ref={contentRef} onClose={onClose}>
-          {children}
-        </ModalContent>
-      )}
-    </ModalBackdrop>,
+    <>
+      <ModalBackdrop ref={backdropRef} onClose={onClose}>
+        {withoutDefaultContent ? (
+          <>{children}</>
+        ) : (
+          <ModalContent ref={contentRef} onClose={onClose}>
+            {children}
+          </ModalContent>
+        )}
+      </ModalBackdrop>
+    </>,
     modalRoot
   );
 };
