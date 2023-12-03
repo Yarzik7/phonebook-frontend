@@ -1,4 +1,5 @@
 import { useShowModal } from './useShowModal';
+import { getCssVariablesValue } from 'js';
 import { useRef } from 'react';
 
 export const useAnimatedShowModal = () => {
@@ -10,7 +11,8 @@ export const useAnimatedShowModal = () => {
     if (showModal) {
       backdropRef.current?.classList.add('modalClose');
       contentRef.current?.classList.add('modalContentClose');
-      setTimeout(toggleModal, 4950);
+      const animationDuration = parseInt(getCssVariablesValue('--transition-duration'));
+      setTimeout(toggleModal, animationDuration - animationDuration * 0.01);
       return;
     }
 

@@ -13,6 +13,6 @@
   --footer-height: 70px;
 
   /* other */
-  --transition-duration: 4950ms;
+  --transition-duration: 3000ms;
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
