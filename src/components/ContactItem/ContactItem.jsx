@@ -9,20 +9,19 @@ import Modal from 'components/Modal/Modal';
 import ContactForm from 'components/ContactForm';
 import Confirm from 'components/Confirm/Confirm';
 import { Loader } from 'components/Loader/Loader';
-import { useState } from 'react';
-import { memo } from 'react';
+import { useState, useRef } from 'react';
 import { showNotify } from 'js/notifyFunc';
 
 const ContactItem = ({ name, number, contactId }) => {
   const { showModal, toggleAnimatedModal, backdropRef, contentRef } = useAnimatedShowModal();
   const [action, setAction] = useState(null);
-  // console.log(`action ${action} ${name} ${contactId}`);
-  // console.log(`render ${name} ${contactId}`);
+
   const dispatch = useDispatch();
   const isDeleting = useSelector(selectIsDeleting);
-  // console.log(`isDeleting ${isDeleting} ${name} ${contactId}`);
-  // console.log(`showModal ${showModal} ${name} ${contactId}`);
   const currentContactId = useSelector(selectCurrentContactId);
+
+  // const itemRef = useRef(null);
+  // const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
   const handleActionContact = ({ currentTarget: { tagName, name } }) => {
     if (tagName !== 'BUTTON') {
@@ -34,23 +33,17 @@ const ContactItem = ({ name, number, contactId }) => {
   };
 
   const handleDeleteContact = async () => {
-    // console.log('req');
     const operationResult = await dispatch(deleteContact(contactId));
-    // console.log('reqed');
 
-    // if (operationResult.error) {
-    //   showNotify(operationResult.payload.message, 'failure');
-    //   console.log('error');
-    // }
+    if (operationResult.error) {
+      showNotify(operationResult.payload.message, 'failure');
+    }
 
-    // if (!operationResult.error) {
-    //   showNotify('Successful!', 'succsess');
-    //   console.log('suc');
-    // }
+    if (!operationResult.error) {
+      showNotify('Successful!', 'succsess');
+    }
 
-    // console.log('toogle');
     toggleAnimatedModal();
-    // console.log('toged');
   };
 
   return (

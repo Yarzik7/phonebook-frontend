@@ -5,14 +5,18 @@ import Filter from 'components/Filter/Filter';
 import SectionWithContainer from 'components/SectionWithContainer/SectionWithContainer';
 import Message from 'components/Message/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'Redux/contacts/selectors';
+import { selectContacts, selectError, selectIsLoading } from 'Redux/contacts/selectors';
 import { fetchContacts } from 'Redux/contacts/operations';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const { items, isLoading, error } = useSelector(selectContacts);
+
+  const items = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
+    console.log('req con');
     dispatch(fetchContacts());
   }, [dispatch]);
 

@@ -11,7 +11,7 @@ const ContactForm = ({ currentContact, onCloseModal }) => {
   const [name, setName] = useState(currentContact?.name ?? '');
   const [number, setNumber] = useState(currentContact?.number ?? '');
 
-  const { items } = useSelector(selectContacts);
+  const items = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleCreateContactData = () => {

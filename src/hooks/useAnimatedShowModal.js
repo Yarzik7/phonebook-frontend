@@ -1,22 +1,58 @@
 import { useShowModal } from './useShowModal';
-import { getCssVariablesValue } from 'js';
+import { useState } from 'react';
 import { useRef } from 'react';
+
+// const animationStates = {
+//   PENDING: 'pending',
+//   START: 'start',
+//   END: 'end',
+// };
 
 export const useAnimatedShowModal = () => {
   const { showModal, toggleModal, setShowModal } = useShowModal();
+  const [isAnimationOut, setIsAnimationOut] = useState(false);
+  // const [animationStatus, setAnimationStatus] = useState(animationStates.PENDING);
   const backdropRef = useRef(null);
   const contentRef = useRef(null);
 
-  const toggleAnimatedModal = () => {
-    if (showModal) {
-      backdropRef.current?.classList.add('modalClose');
-      contentRef.current?.classList.add('modalContentClose');
-      const animationDuration = parseInt(getCssVariablesValue('--transition-duration'));
-      setTimeout(toggleModal, animationDuration - animationDuration * 0.01);
+  const toggleAnimatedModal = e => {
+    // console.log(e);
+
+    if (!showModal && !isAnimationOut) {
+      toggleModal();
+      setIsAnimationOut(true);
       return;
     }
 
-    toggleModal();
+    // if (e?.animationName === 'modalClose') {
+    //   console.log('end');
+    // }
+
+    // toggleModal();
+
+    // console.log(e?.animationName);
+
+    // if (!showModal && !isAnimationOut && animationStatus === animationStates.PENDING) {
+    //   toggleModal();
+    //   setAnimationStatus(animationStates.START);
+    // }
+
+    // if (showModal && !isAnimationOut && animationStatus === animationStates.START) {
+    //   setAnimationStatus(animationStates.END);
+    // }
+
+    // if (showModal && !isAnimationOut && animationStatus === animationStates.END) {
+    //   backdropRef.current?.classList.add('modalClose');
+    //   contentRef.current?.classList.add('modalContentClose');
+    //   setAnimationStatus(animationStates.START);
+    //   setIsAnimationOut(true);
+    // }
+
+    // if (showModal && isAnimationOut && animationStatus === animationStates.START) {
+    //   toggleModal();
+    //   setAnimationStatus(animationStates.PENDING);
+    //   setIsAnimationOut(false);
+    // }
   };
 
   return { showModal, toggleAnimatedModal, setShowModal, backdropRef, contentRef };

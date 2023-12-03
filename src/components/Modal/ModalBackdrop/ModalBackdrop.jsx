@@ -21,7 +21,12 @@ const ModalBackdrop = forwardRef(({ children, onClose }, ref) => {
   };
 
   return (
-    <div ref={ref} className={['modalOpen', css.backdrop].join(' ')} onClick={handleBackdropClick}>
+    <div
+      ref={ref}
+      className={['modalOpen', css.backdrop].join(' ')}
+      onClick={handleBackdropClick}
+      onAnimationEnd={onClose}
+    >
       {children}
     </div>
   );
