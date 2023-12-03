@@ -5,11 +5,15 @@ import CloseButton from 'components/CloseButton/CloseButton';
 import { forwardRef } from 'react';
 
 const SideBar = forwardRef(({ isLoggedIn, onClose }, ref) => {
+  const handleCloseByNavLinkClick = ({ target: { tagName } }) => {
+    tagName === 'A' && onClose();
+  };
+
   return (
     <aside ref={ref} className={['modalContentOpen', css.sidebar].join(' ')}>
       <CloseButton onClick={onClose} />
       <div className={css.userBar}>{isLoggedIn && <UserMenu />}</div>
-      <Navigation />
+      <Navigation closeSideBar={handleCloseByNavLinkClick} />
     </aside>
   );
 });

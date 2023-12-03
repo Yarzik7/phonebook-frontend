@@ -1,3 +1,5 @@
 import { handleDeleteContactFulfilled } from './handleDeleteContactFulfilled';
+import { handleDeleteContactPending } from './handleDeleteContactPending';
+import { handleDeleteContactRejected } from './handleDeleteContactRejected';
 
-export { handleDeleteContactFulfilled };
+export { handleDeleteContactFulfilled, handleDeleteContactPending, handleDeleteContactRejected };

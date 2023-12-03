@@ -27,9 +27,7 @@ const ContactForm = ({ currentContact, onCloseModal }) => {
     return contactData;
   };
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     if (
       items.some(
         ({ name: contactName }) =>
@@ -55,7 +53,7 @@ const ContactForm = ({ currentContact, onCloseModal }) => {
     );
 
     if (operationResult.error) {
-      showNotify(operationResult.payload.message, 'failure', 5000);
+      showNotify(operationResult.payload.message, 'failure');
       return;
     }
 

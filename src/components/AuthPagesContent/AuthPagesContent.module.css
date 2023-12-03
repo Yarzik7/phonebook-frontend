@@ -6,3 +6,18 @@
   border: 1px solid var(--accent-color);
   border-radius: var(--border-radius);
 }
+
+.authOffer__navLink {
+  border-bottom: 1px solid var(--bg-button-color);
+}
+
+.authOffer__navLink:hover {
+  border-color: var(--accent-color);
+}
+
+.authOffer {
+  margin-top: 10px;
+
+  font-size: 20px;
+  text-align: center;
+}

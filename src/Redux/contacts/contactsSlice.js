@@ -7,6 +7,8 @@ export const contactsSlice = createSlice({
   initialState: {
     items: [],
     isLoading: false,
+    isDeleting: false,
+    currentContactId: null,
     error: null,
   },
   extraReducers: builder =>
@@ -17,9 +19,9 @@ export const contactsSlice = createSlice({
       .addCase(fetchContacts.pending, contactsReducers.handleContactsPending)
       .addCase(fetchContacts.fulfilled, contactsReducers.handleFetchContactsFulfilled)
       .addCase(fetchContacts.rejected, contactsReducers.handleContactsRejected)
-      .addCase(deleteContact.pending, contactsReducers.handleContactsPending)
+      .addCase(deleteContact.pending, contactsReducers.handleDeleteContactPending)
       .addCase(deleteContact.fulfilled, contactsReducers.handleDeleteContactFulfilled)
-      .addCase(deleteContact.rejected, contactsReducers.handleContactsRejected)
+      .addCase(deleteContact.rejected, contactsReducers.handleDeleteContactRejected)
       .addCase(updateContact.pending, contactsReducers.handleContactsPending)
       .addCase(updateContact.fulfilled, contactsReducers.handleUpdateContactFulfilled)
       .addCase(updateContact.rejected, contactsReducers.handleContactsRejected),

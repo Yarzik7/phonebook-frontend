@@ -10,7 +10,7 @@ export const useAnimatedShowModal = () => {
     if (showModal) {
       backdropRef.current?.classList.add('modalClose');
       contentRef.current?.classList.add('modalContentClose');
-      setTimeout(toggleModal, 250);
+      setTimeout(toggleModal, 4950);
       return;
     }
 

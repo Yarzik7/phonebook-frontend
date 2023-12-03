@@ -1,9 +1,5 @@
 .contactList {
-  height: 60vh;
-  /* height: 60%; */
-  /* height: 100%; */
-  /* max-height: calc(100% - 600px); */
-  /* max-height: auto; */
+  max-height: 60vh;
   padding-right: 15px;
   overflow-y: scroll;
 }

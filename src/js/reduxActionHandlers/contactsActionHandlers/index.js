@@ -1,5 +1,9 @@
 import { handleAddContactFulfilled } from './addContactsActionHandlers';
-import { handleDeleteContactFulfilled } from './deleteContactsActionHandlers';
+import {
+  handleDeleteContactFulfilled,
+  handleDeleteContactPending,
+  handleDeleteContactRejected,
+} from './deleteContactsActionHandlers';
 import { handleFetchContactsFulfilled } from './fetchContactsActionHandlers';
 import { handleUpdateContactFulfilled } from './updateContactActionHandlers';
 
@@ -9,6 +13,8 @@ import { handleContactsRejected } from './handleContactsRejected';
 export {
   handleAddContactFulfilled,
   handleDeleteContactFulfilled,
+  handleDeleteContactPending,
+  handleDeleteContactRejected,
   handleFetchContactsFulfilled,
   handleUpdateContactFulfilled,
   handleContactsPending,

@@ -1,17 +1,43 @@
 import PropTypes from 'prop-types';
 import { FaTrash, FaPen } from 'react-icons/fa';
 import css from './ContactItem.module.css';
-import { useDispatch } from 'react-redux';
-import { useAnimatedShowModal } from 'hooks';
+import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'Redux/contacts/operations';
+import { selectCurrentContactId, selectIsDeleting } from 'Redux/contacts/selectors';
+import { useAnimatedShowModal } from 'hooks';
 import Modal from 'components/Modal/Modal';
 import ContactForm from 'components/ContactForm';
+import Confirm from 'components/Confirm/Confirm';
+import { Loader } from 'components/Loader/Loader';
+import { useState } from 'react';
+import { showNotify } from 'js/notifyFunc';
 
 const ContactItem = ({ name, number, contactId }) => {
   const { showModal, toggleAnimatedModal, backdropRef, contentRef } = useAnimatedShowModal();
+  const [action, setAction] = useState(null);
+  console.log(action);
 
   const dispatch = useDispatch();
-  const handleDeleteContact = () => dispatch(deleteContact(contactId));
+  const isDeleting = useSelector(selectIsDeleting);
+  const currentContactId = useSelector(selectCurrentContactId);
+
+  const handleActionContact = ({ currentTarget: { tagName, name } }) => {
+    if (tagName !== 'BUTTON') {
+      return;
+    }
+
+    setAction(name);
+    toggleAnimatedModal();
+  };
+
+  const handleDeleteContact = async () => {
+    const operationResult = await dispatch(deleteContact(contactId));
+
+    if (operationResult.error) {
+      showNotify(operationResult.payload.message, 'failure');
+      return;
+    }
+  };
 
   return (
     <li className={css.contactItem}>
@@ -21,19 +47,50 @@ const ContactItem = ({ name, number, contactId }) => {
       </div>
 
       <div className={css.buttonContainer}>
-        <button type="button" className={css.button} onClick={toggleAnimatedModal}>
+        <button
+          disabled={isDeleting}
+          type="button"
+          name="update"
+          className={css.button}
+          onClick={handleActionContact}
+        >
           <FaPen />
         </button>
-        <button type="button" className={css.button} onClick={handleDeleteContact}>
-          <FaTrash />
+        <button
+          disabled={isDeleting}
+          type="button"
+          name="delete"
+          className={css.button}
+          onClick={handleActionContact}
+        >
+          {isDeleting && contactId === currentContactId ? (
+            <Loader
+              size="20px"
+              color="var(--primary-dark-color)"
+              secondaryColor="var(--primary-dark-color)"
+            />
+          ) : (
+            <FaTrash />
+          )}
         </button>
       </div>
       {showModal && (
         <Modal onClose={toggleAnimatedModal} backdropRef={backdropRef} contentRef={contentRef}>
-          <ContactForm
-            onCloseModal={toggleAnimatedModal}
-            currentContact={{ name, number, contactId }}
-          />
+          {action === 'delete' && (
+            <Confirm
+              contactName={name}
+              contactId={contactId}
+              confirmed={handleDeleteContact}
+              onCloseModal={toggleAnimatedModal}
+            />
+          )}
+
+          {action === 'update' && (
+            <ContactForm
+              onCloseModal={toggleAnimatedModal}
+              currentContact={{ name, number, contactId }}
+            />
+          )}
         </Modal>
       )}
     </li>
