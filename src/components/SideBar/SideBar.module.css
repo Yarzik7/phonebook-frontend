@@ -10,6 +10,8 @@
 
   border-right: 1px solid var(--accent-color);
   background-color: var(--primary-dark-color);
+
+  animation: modalContentOpen var(--transition-duration) var(--transition-timing-function);
 }
 
 .userBar {
@@ -19,6 +21,12 @@
   border-bottom: 1px solid var(--accent-color);
 }
 
-.modalContentClose {
-  animation: modalContentB var(--transition-duration) var(--transition-timing-function);
+@keyframes modalContentOpen {
+  0% {
+    transform: translateX(-101%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }

@@ -12,4 +12,16 @@
   padding-right: 15px;
 
   background-color: var(--backdrop);
+
+  animation: modalOpen var(--transition-duration) var(--transition-timing-function);
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

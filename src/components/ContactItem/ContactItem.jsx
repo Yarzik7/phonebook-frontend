@@ -4,24 +4,29 @@ import css from './ContactItem.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'Redux/contacts/operations';
 import { selectCurrentContactId, selectIsDeleting } from 'Redux/contacts/selectors';
-import { useAnimatedShowModal } from 'hooks';
+import { useShowModalWithCloseAnimation } from 'hooks';
 import Modal from 'components/Modal/Modal';
 import ContactForm from 'components/ContactForm';
 import Confirm from 'components/Confirm/Confirm';
 import { Loader } from 'components/Loader/Loader';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { showNotify } from 'js/notifyFunc';
 
 const ContactItem = ({ name, number, contactId }) => {
-  const { showModal, toggleAnimatedModal, backdropRef, contentRef } = useAnimatedShowModal();
+  const {
+    showModal,
+    backdropRef,
+    contentRef,
+    onAnimationEnd,
+    setAfterCloseAnimationHandler,
+    onToggleModal,
+  } = useShowModalWithCloseAnimation();
+
   const [action, setAction] = useState(null);
 
   const dispatch = useDispatch();
   const isDeleting = useSelector(selectIsDeleting);
   const currentContactId = useSelector(selectCurrentContactId);
-
-  // const itemRef = useRef(null);
-  // const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
   const handleActionContact = ({ currentTarget: { tagName, name } }) => {
     if (tagName !== 'BUTTON') {
@@ -29,21 +34,22 @@ const ContactItem = ({ name, number, contactId }) => {
     }
 
     setAction(name);
-    toggleAnimatedModal();
+    onToggleModal();
   };
 
   const handleDeleteContact = async () => {
     const operationResult = await dispatch(deleteContact(contactId));
-
     if (operationResult.error) {
       showNotify(operationResult.payload.message, 'failure');
+      return;
     }
 
-    if (!operationResult.error) {
-      showNotify('Successful!', 'succsess');
-    }
+    showNotify('Successful!', 'succsess');
+  };
 
-    toggleAnimatedModal();
+  const onDeleteConfirmed = () => {
+    setAfterCloseAnimationHandler(handleDeleteContact);
+    onToggleModal();
   };
 
   return (
@@ -82,18 +88,23 @@ const ContactItem = ({ name, number, contactId }) => {
         </button>
       </div>
       {showModal && (
-        <Modal onClose={toggleAnimatedModal} backdropRef={backdropRef} contentRef={contentRef}>
+        <Modal
+          onClose={onToggleModal}
+          onAnimationEnd={onAnimationEnd}
+          backdropRef={backdropRef}
+          contentRef={contentRef}
+        >
           {action === 'delete' && (
             <Confirm
               contactName={name}
-              onConfirmed={handleDeleteContact}
-              onNotConfirmed={toggleAnimatedModal}
+              onConfirmed={onDeleteConfirmed}
+              onNotConfirmed={onToggleModal}
             />
           )}
 
           {action === 'update' && (
             <ContactForm
-              onCloseModal={toggleAnimatedModal}
+              onCloseModal={onToggleModal}
               currentContact={{ name, number, contactId }}
             />
           )}

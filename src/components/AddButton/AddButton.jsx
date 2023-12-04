@@ -1,21 +1,27 @@
 import css from './AddButton.module.css';
 import { MdAddIcCall } from 'react-icons/md';
-import { useAnimatedShowModal } from 'hooks';
+import { useShowModalWithCloseAnimation } from 'hooks';
 import Modal from 'components/Modal/Modal';
 import ContactForm from 'components/ContactForm';
 
 const AddButton = () => {
-  const { showModal, toggleAnimatedModal, backdropRef, contentRef } = useAnimatedShowModal();
+  const { showModal, backdropRef, contentRef, onAnimationEnd, onToggleModal } =
+    useShowModalWithCloseAnimation();
 
   return (
     <>
-      <button className={css.addButton} onClick={toggleAnimatedModal}>
+      <button className={css.addButton} onClick={onToggleModal}>
         <MdAddIcCall size={40} />
       </button>
 
       {showModal && (
-        <Modal onClose={toggleAnimatedModal} backdropRef={backdropRef} contentRef={contentRef}>
-          <ContactForm onCloseModal={toggleAnimatedModal} />
+        <Modal
+          onClose={onToggleModal}
+          onAnimationEnd={onAnimationEnd}
+          backdropRef={backdropRef}
+          contentRef={contentRef}
+        >
+          <ContactForm onCloseModal={onToggleModal} />
         </Modal>
       )}
     </>

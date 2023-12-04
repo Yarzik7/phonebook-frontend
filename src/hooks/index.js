@@ -1,5 +1,5 @@
 import { useAuth } from './useAuth';
 import { useShowModal } from './useShowModal';
-import { useAnimatedShowModal } from './useAnimatedShowModal';
+import { useShowModalWithCloseAnimation } from './useShowModalWithCloseAnimation';
 
-export { useAuth, useShowModal, useAnimatedShowModal };
+export { useAuth, useShowModal, useShowModalWithCloseAnimation };

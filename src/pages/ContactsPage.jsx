@@ -10,13 +10,11 @@ import { fetchContacts } from 'Redux/contacts/operations';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-
   const items = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   useEffect(() => {
-    console.log('req con');
     dispatch(fetchContacts());
   }, [dispatch]);
 

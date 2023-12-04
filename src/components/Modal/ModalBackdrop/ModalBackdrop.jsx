@@ -1,7 +1,7 @@
 import css from './ModalBackdrop.module.css';
 import { useEffect, forwardRef } from 'react';
 
-const ModalBackdrop = forwardRef(({ children, onClose }, ref) => {
+const ModalBackdrop = forwardRef(({ children, onClose, onAnimationEnd }, ref) => {
   useEffect(() => {
     const handleCloseByEsc = event => {
       if (event.code === 'Escape') {
@@ -23,9 +23,9 @@ const ModalBackdrop = forwardRef(({ children, onClose }, ref) => {
   return (
     <div
       ref={ref}
-      className={['modalOpen', css.backdrop].join(' ')}
+      className={css.backdrop}
       onClick={handleBackdropClick}
-      onAnimationEnd={onClose}
+      onAnimationEnd={onAnimationEnd}
     >
       {children}
     </div>

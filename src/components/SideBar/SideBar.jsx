@@ -10,7 +10,7 @@ const SideBar = forwardRef(({ isLoggedIn, onClose }, ref) => {
   };
 
   return (
-    <aside ref={ref} className={['modalContentOpen', css.sidebar].join(' ')}>
+    <aside ref={ref} className={css.sidebar}>
       <CloseButton onClick={onClose} />
       <div className={css.userBar}>{isLoggedIn && <UserMenu />}</div>
       <Navigation closeSideBar={handleCloseByNavLinkClick} />

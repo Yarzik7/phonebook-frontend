@@ -4,14 +4,14 @@ import ModalContent from './ModalContent/ModalContent';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, backdropRef, contentRef, withoutDefaultContent = false, children }) => {
+const Modal = ({ onClose, backdropRef, contentRef, withoutDefaultContent = false, onAnimationEnd,children }) => {
   return createPortal(
     <>
-      <ModalBackdrop ref={backdropRef} onClose={onClose}>
+      <ModalBackdrop ref={backdropRef} onClose={onClose} onAnimationEnd={onAnimationEnd}>
         {withoutDefaultContent ? (
           <>{children}</>
         ) : (
-          <ModalContent ref={contentRef} onClose={onClose}>
+          <ModalContent ref={contentRef} onClose={onClose} onAnimationEnd={onAnimationEnd}>
             {children}
           </ModalContent>
         )}

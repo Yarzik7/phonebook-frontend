@@ -1,27 +1,9 @@
-.modalOpen {
-  animation: modalOpen var(--transition-duration) var(--transition-timing-function);
-}
-
 .modalClose {
   animation: modalClose var(--transition-duration) var(--transition-timing-function);
 }
 
-.modalContentOpen {
-  animation: modalContentOpen var(--transition-duration) var(--transition-timing-function);
-}
-
 .modalContentClose {
   animation: modalContentClose var(--transition-duration) var(--transition-timing-function);
-}
-
-@keyframes modalOpen {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 @keyframes modalClose {
@@ -34,19 +16,9 @@
   }
 }
 
-@keyframes modalContentOpen {
-  0% {
-    transform: translateX(-1500px);
-  }
-
-  100% {
-    transform: translateX(0px);
-  }
-}
-
 @keyframes modalContentClose {
   0% {
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 
   100% {
