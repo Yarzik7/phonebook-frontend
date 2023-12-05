@@ -1,7 +1,11 @@
 import { handleLoginFulfilled, handleLoginRejected } from './loginActionHandlers';
 import { handleRegisterFulfilled, handleRegisterRejected } from './registerActionHandlers';
 import { handleLogoutFulfilled, handleLogoutRejected } from './logoutActionHandlers';
-import { handleRefreshUserFulfilled, handleRefreshUserRejected } from './refreshUserActionHandlers';
+import {
+  handleRefreshUserFulfilled,
+  handleRefreshUserRejected,
+  handleRefreshUserPending,
+} from './refreshUserActionHandlers';
 
 export {
   handleLoginFulfilled,
@@ -12,4 +16,5 @@ export {
   handleLogoutRejected,
   handleRefreshUserFulfilled,
   handleRefreshUserRejected,
+  handleRefreshUserPending,
 };

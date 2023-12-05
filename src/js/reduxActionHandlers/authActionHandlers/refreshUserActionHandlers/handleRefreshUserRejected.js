@@ -1,6 +1,8 @@
 import { showNotify } from 'js/notifyFunc';
 
-export const handleRefreshUserRejected = (_, { payload }) => {
+export const handleRefreshUserRejected = (state, { payload }) => {
+  state.isRefreshingUser = false;
+
   if (payload === 'Please log in or register!') {
     showNotify(payload, 'info', 7000);
     return;

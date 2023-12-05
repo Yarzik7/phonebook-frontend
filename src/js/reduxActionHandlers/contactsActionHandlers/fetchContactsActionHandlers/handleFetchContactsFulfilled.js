@@ -1,5 +1,5 @@
 export const handleFetchContactsFulfilled = (state, { payload }) => {
-  state.isLoading = false;
+  state.isFetching = false;
   state.error = null;
   state.items = payload;
 };

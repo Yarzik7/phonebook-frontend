@@ -1,17 +1,15 @@
 .form {
   display: flex;
   flex-direction: column;
-  /* margin: 0 auto;
-  margin-bottom: 20px;
-  padding: 20px; */
-  /* padding-top: 50px;
-  padding-bottom: 50px; */
-
-  /* border: 1px solid var(--accent-color); */
   border-radius: var(--border-radius);
 }
 
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
   max-width: 320px;
   height: 50px;
   padding: 0 15px;

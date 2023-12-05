@@ -4,8 +4,13 @@ import {
   handleDeleteContactPending,
   handleDeleteContactRejected,
 } from './deleteContactsActionHandlers';
-import { handleFetchContactsFulfilled } from './fetchContactsActionHandlers';
+import {
+  handleFetchContactsFulfilled,
+  handleFetchContactsPending,
+  handleFetchContactsRejected,
+} from './fetchContactsActionHandlers';
 import { handleUpdateContactFulfilled } from './updateContactActionHandlers';
+import { handleLogoutContactsFulfilled } from './logoutActionContactsHandlers';
 
 import { handleContactsPending } from './handleContactsPending';
 import { handleContactsRejected } from './handleContactsRejected';
@@ -16,7 +21,10 @@ export {
   handleDeleteContactPending,
   handleDeleteContactRejected,
   handleFetchContactsFulfilled,
+  handleFetchContactsPending,
+  handleFetchContactsRejected,
   handleUpdateContactFulfilled,
   handleContactsPending,
   handleContactsRejected,
+  handleLogoutContactsFulfilled,
 };

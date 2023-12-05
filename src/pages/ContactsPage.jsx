@@ -5,13 +5,13 @@ import Filter from 'components/Filter/Filter';
 import SectionWithContainer from 'components/SectionWithContainer/SectionWithContainer';
 import Message from 'components/Message/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'Redux/contacts/selectors';
+import { selectContacts, selectError, selectIsFetching } from 'Redux/contacts/selectors';
 import { fetchContacts } from 'Redux/contacts/operations';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const items = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
+  const isFetching = useSelector(selectIsFetching);
   const error = useSelector(selectError);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const ContactsPage = () => {
       </SectionWithContainer>
 
       <SectionWithContainer headText="Contact list" cssHeadClass="visually-hidden">
-        {!error && !isLoading && !items.length ? (
+        {!error && !isFetching && !items.length ? (
           <Message message="The contact list is empty!" />
         ) : (
           <ContactList />
