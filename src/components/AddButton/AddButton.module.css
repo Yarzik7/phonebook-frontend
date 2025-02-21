@@ -13,8 +13,7 @@
   transition: border-color var(--transition-duration) var(--transition-timing-function);
 }
 
-.addButton:hover,
-.addButton:focus {
+.addButton:hover {
   background-color: transparent;
   border-color: var(--accent-color);
 }
